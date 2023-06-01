@@ -175,7 +175,11 @@ impl<'a> Iterator for PacketIter<'a> {
 
                 Err(Error::Eof) => return None,
 
-                Err(..) => (),
+                Err(error) => {
+                    eprintln!("Packet read error in a loop: {}", error);
+
+                    ()
+                },
             }
         }
     }
